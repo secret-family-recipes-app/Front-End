@@ -31,11 +31,10 @@ function LogIn(props) {
                 console.log("Wrong password");
             } else {
                 console.log("Success!");
-                props.userHasAuthenticated(true);
+                props.userHasAuthenticated("true");
+                props.history.push("/dashboard");
             }
         }
-
-console.log(userData);
 
   return (
     <div>
@@ -46,7 +45,7 @@ console.log(userData);
             </Form.Field>
             <Form.Field>
                 <label>Password</label>
-                <input placeholder='Password' name="password" value={userData.password} onChange={handleChange}/>
+                <input placeholder='Password' type="password" name="password" value={userData.password} onChange={handleChange}/>
             </Form.Field>
             <Button type='submit'>Log In</Button>
         </Form>

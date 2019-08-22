@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import 'semantic-ui-css/semantic.min.css';
 import LogIn from "./components/LogIn";
-import { Menu } from 'semantic-ui-react'
+import Dashboard from "./components/Dashboard";
+import { Menu } from 'semantic-ui-react';
+import { Route, NavLink, withRouter, Link } from "react-router-dom";
 
-function App() {
+function App(props) {
   const [userAuth, setUserAuth] = useState({
     isAuthenticated: localStorage.getItem('authenticated')
   });
@@ -14,31 +16,32 @@ function App() {
 
   useEffect(() => {
     localStorage.setItem('authenticated', userAuth.isAuthenticated);
-  }, [userAuth.isAuthenticated]);
+  }, [userAuth]);
 
 const handleLogout = event => {
-  userHasAuthenticated(false);
+  userHasAuthenticated("false");
+  props.history.push("/login");
 }
-
-console.log(userAuth);
 
   return (
     <div className="App">
-      {userAuth.isAuthenticated 
-      ? <Menu secondary>
-      <Menu.Item
-            name='logout'
-            position="right"
-            // active={activeItem === 'logout'}
-            onClick={handleLogout}
-          />
+      {console.log(`Local storage ${localStorage.getItem('authenticated')}, userAuth: ${userAuth.isAuthenticated}`)}
+      <Menu secondary>
+        {
+        userAuth.isAuthenticated === "true"
+        ? <Menu.Item name='logout' position="right" onClick={handleLogout} />
+        : <Fragment>
+            <Menu.Item name="login" position="right">
+              <NavLink to="/login">Log In</NavLink>
+            </Menu.Item>
+            <Menu.Item name="sign up"/> 
+          </Fragment>
+        }
       </Menu>
-      : <Menu secondary>
-      </Menu>
-      }
-      <LogIn userHasAuthenticated={userHasAuthenticated} userAuth={userAuth}/>
+        <Route path="/login" exact render={props => <LogIn {...props} userHasAuthenticated={userHasAuthenticated} userAuth={userAuth}/>} />
+        <Route path="/dashboard" render={props => <Dashboard {...props} />} />
     </div>
   );
 }
 
-export default App;
+export default withRouter(App);
