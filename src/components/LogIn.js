@@ -31,6 +31,7 @@ function LogIn(props) {
                 console.log("Wrong password");
             } else {
                 console.log("Success!");
+                props.userHasAuthenticated(true);
             }
         }
 
