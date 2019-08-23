@@ -2,24 +2,38 @@ import React, { useState, useEffect, Fragment } from 'react';
 import 'semantic-ui-css/semantic.min.css';
 import LogIn from "./components/LogIn";
 import Dashboard from "./components/Dashboard";
+import Signup from "./components/Signup";
 import { Menu } from 'semantic-ui-react';
 import { Route, NavLink, withRouter, Link } from "react-router-dom";
+import axios from 'axios';
 
 function App(props) {
   const [userAuth, setUserAuth] = useState({
-    isAuthenticated: localStorage.getItem('authenticated')
+    userToken: localStorage.getItem('token')
   });
 
-  const userHasAuthenticated = authenticated => {
-    setUserAuth({ isAuthenticated: authenticated })
+  // const userHasAuthenticated = token => {
+  //   setUserAuth({ userToken: token })
+  // }
+
+  const login = (userData) => {
+    axios.post('https://secretfamilyrecipes.herokuapp.com/auth/login', userData)
+          .then(res => {
+            setUserAuth({ userToken: res.data.token })
+            localStorage.setItem('token', res.data.token);
+            props.history.push("/dashboard");
+          })
+          .catch(err => {
+              console.log(err);
+          })
   }
 
   useEffect(() => {
-    localStorage.setItem('authenticated', userAuth.isAuthenticated);
+    localStorage.setItem('token', userAuth.userToken);
   }, [userAuth]);
 
 const handleLogout = event => {
-  userHasAuthenticated("false");
+  setUserAuth({ userToken: "" })
   props.history.push("/login");
 }
 
@@ -28,17 +42,20 @@ const handleLogout = event => {
       {console.log(`Local storage ${localStorage.getItem('authenticated')}, userAuth: ${userAuth.isAuthenticated}`)}
       <Menu secondary>
         {
-        userAuth.isAuthenticated === "true"
+        userAuth.userToken !== ""
         ? <Menu.Item name='logout' position="right" onClick={handleLogout} />
         : <Fragment>
             <Menu.Item name="login" position="right">
-              <NavLink to="/login">Log In</NavLink>
+              <NavLink to="/login" activeClassName="active">Log In</NavLink>
             </Menu.Item>
-            <Menu.Item name="sign up"/> 
+          <Menu.Item>
+            <NavLink to="/signin" activeClassName="active">Sign In</NavLink>
+          </Menu.Item>
           </Fragment>
         }
       </Menu>
-        <Route path="/login" exact render={props => <LogIn {...props} userHasAuthenticated={userHasAuthenticated} userAuth={userAuth}/>} />
+        <Route path="/login" exact render={props => <LogIn {...props} login={login} userAuth={userAuth}/>} />
+        <Route path="/signup" exact render={props => <Signup {...props} />} />
         <Route path="/dashboard" render={props => <Dashboard {...props} />} />
     </div>
   );

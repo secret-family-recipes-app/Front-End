@@ -1,14 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Form } from 'semantic-ui-react'
-
-// test login data
-
-const loginData = [
-    {
-        username: "sofia",
-        password: "12345"
-    }
-]
+import { Button, Form } from 'semantic-ui-react';
 
 function LogIn(props) {
     const [userData, setUserData] = useState({
@@ -24,16 +15,7 @@ function LogIn(props) {
 
     const handleSubmit = event => {
         event.preventDefault();
-        const currentUser = loginData.filter(user => (user.username === userData.username))
-            if (currentUser.length < 1) {
-                console.log("User does not exist.");
-            } else if (currentUser.length === 1 && currentUser[0].password !== userData.password) {
-                console.log("Wrong password");
-            } else {
-                console.log("Success!");
-                props.userHasAuthenticated("true");
-                props.history.push("/dashboard");
-            }
+        props.login(userData);
         }
 
   return (
