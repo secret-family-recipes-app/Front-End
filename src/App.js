@@ -28,6 +28,18 @@ function App(props) {
           })
   }
 
+  const signup = (userData) => {
+    axios.post('https://secretfamilyrecipes.herokuapp.com/auth/register', userData)
+          .then(res => {
+            setUserAuth({ userToken: res.data.token })
+            localStorage.setItem('token', res.data.token);
+            props.history.push("/dashboard");
+          })
+          .catch(err => {
+              console.log(err);
+          })
+  }
+
   useEffect(() => {
     localStorage.setItem('token', userAuth.userToken);
   }, [userAuth]);
@@ -49,13 +61,13 @@ const handleLogout = event => {
               <NavLink to="/login" activeClassName="active">Log In</NavLink>
             </Menu.Item>
           <Menu.Item>
-            <NavLink to="/signin" activeClassName="active">Sign In</NavLink>
+            <NavLink to="/signup" activeClassName="active">Sign In</NavLink>
           </Menu.Item>
           </Fragment>
         }
       </Menu>
         <Route path="/login" exact render={props => <LogIn {...props} login={login} userAuth={userAuth}/>} />
-        <Route path="/signup" exact render={props => <Signup {...props} />} />
+        <Route path="/signup" exact render={props => <Signup {...props} signup={signup} />} />
         <Route path="/dashboard" render={props => <Dashboard {...props} />} />
     </div>
   );
