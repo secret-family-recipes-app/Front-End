@@ -3,8 +3,6 @@ import { Button, Form } from 'semantic-ui-react';
 
 function Signup(props) {
     const [signupData, setSignupData] = useState({
-        // firstname: "",
-        // lastname: "",
         username: "",
         password: ""
     });
@@ -22,14 +20,6 @@ function Signup(props) {
   return (
     <div>
         <Form onSubmit={handleSubmit}>
-        {/* <Form.Field>
-                <label>First Name</label>
-                <input placeholder='First Name' name="firstname" value={signupData.firstname} onChange={handleChange}/>
-            </Form.Field>
-            <Form.Field>
-                <label>Last Name</label>
-                <input placeholder='Last Name' name="lastname" value={signupData.lastname} onChange={handleChange}/>
-            </Form.Field> */}
             <Form.Field>
                 <label>Username</label>
                 <input placeholder='Username' name="username" value={signupData.username} onChange={handleChange}/>

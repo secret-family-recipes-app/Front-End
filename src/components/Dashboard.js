@@ -1,11 +1,11 @@
 import React from 'react';
-import axios from 'axios';
+import { axiosWithAuth } from '../axiosWithAuth.js';
 
 function Dashboard() {
 
   return (
     <div>
-        <h2>Dashboard</h2>
+        <h1>Dashboard</h1>
     </div>
   );
 }
