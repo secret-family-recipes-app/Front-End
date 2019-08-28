@@ -12,7 +12,8 @@ function Signup(props) {
           [event.target.name]: event.target.value
         });
       }
-      const handleSubmit = event => {
+
+    const handleSubmit = event => {
         event.preventDefault();
         props.signup(signupData);
         }

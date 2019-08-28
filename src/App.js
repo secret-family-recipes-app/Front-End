@@ -3,6 +3,7 @@ import 'semantic-ui-css/semantic.min.css';
 import LogIn from "./components/LogIn";
 import Dashboard from "./components/Dashboard";
 import Signup from "./components/Signup";
+import CreateRecipe from "./components/CreateRecipe";
 import { Menu } from 'semantic-ui-react';
 import { Route, NavLink, withRouter, Redirect } from "react-router-dom";
 import axios from 'axios';
@@ -58,6 +59,7 @@ function App(props) {
         }
       </Menu>
         <PrivateRoute path='/dashboard' component={Dashboard} />
+        <PrivateRoute path='/create' component={CreateRecipe} />
         <Route path="/login" exact render={props => <LogIn {...props} login={login}/>} />
         <Route path="/signup" exact render={props => <Signup {...props} signup={signup} />} />
     </div>

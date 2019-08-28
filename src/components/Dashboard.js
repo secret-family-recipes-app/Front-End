@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import RecipeSearch from './RecipeSearch';
+import MyRecipes from './MyRecipes';
 import { Card } from 'semantic-ui-react';
+import { Link } from "react-router-dom";
 
 function Dashboard() {
     const [ searchState, setSearchState ] = useState('')
@@ -43,6 +45,8 @@ function Dashboard() {
     <div>
         <h1>Dashboard</h1>
         <RecipeSearch onChange={handleChange}/>
+        <Link to="/create" >Create Recipe</Link>
+        <MyRecipes />
         <Card.Group>
         {
             filteredData.map((recipe) => {
