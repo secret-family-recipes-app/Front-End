@@ -57,9 +57,9 @@ function App(props) {
           </Fragment>
         }
       </Menu>
+        <PrivateRoute path='/dashboard' component={Dashboard} />
         <Route path="/login" exact render={props => <LogIn {...props} login={login}/>} />
         <Route path="/signup" exact render={props => <Signup {...props} signup={signup} />} />
-        <PrivateRoute path='/dashboard' component={Dashboard} />
     </div>
   );
 }
