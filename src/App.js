@@ -9,6 +9,7 @@ import RecipeView from "./components/RecipeView";
 import { Route, withRouter, Redirect } from "react-router-dom";
 import axios from 'axios';
 import { axiosWithAuth } from './axiosWithAuth.js';
+import * as yup from 'yup';
 
 function App(props) {
   const [ recipesList, setRecipesList ] = useState([])
@@ -67,7 +68,7 @@ function App(props) {
       <Nav handleLogout={handleLogout}/>
       <PrivateRoute path='/myrecipes' component={Dashboard} recipesList={recipesList}/>
       <PrivateRoute path='/create' component={CreateRecipe} updateData={updateData} recipesList={recipesList}/>
-      <PrivateRoute path='/recipe/:id' exact component={RecipeView} recipesList={recipesList} />
+      <PrivateRoute path='/recipe/:id' exact component={RecipeView} updateData={updateData} recipesList={recipesList} />
       <PrivateRoute path='/recipe/:id/edit' component={CreateRecipe} updateData={updateData} recipesList={recipesList} />
       <Route path="/login" exact render={props => <LogIn {...props} login={login}/>} />
       <Route path="/signup" exact render={props => <Signup {...props} signup={signup} />} />

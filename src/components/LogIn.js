@@ -36,7 +36,7 @@ function LogIn(props) {
         </Form>
         <p>Don't have an account?</p>
         <Button>
-          <NavLink to="/signup" className="signup">SIGN UP</NavLink>
+          <NavLink to="/signup">SIGN UP</NavLink>
         </Button>
     </div>
   );

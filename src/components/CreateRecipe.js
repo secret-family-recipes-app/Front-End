@@ -85,6 +85,7 @@ function CreateRecipe(props) {
                 props.updateData(false);
               })
               .catch(err => {
+                setLoading(false);
                   console.log(err);
               })
     }

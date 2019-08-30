@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Form } from 'semantic-ui-react';
+import { NavLink } from "react-router-dom";
 
 function Signup(props) {
     const [signupData, setSignupData] = useState({
@@ -19,10 +20,11 @@ function Signup(props) {
         }
 
   return (
-    <div>
+    <div className="signup">
+      <h2>Start Creating and Sharing Recipes!</h2>
         <Form onSubmit={handleSubmit}>
             <Form.Field>
-                <label>Username</label>
+                <label>Email Address</label>
                 <input placeholder='Username' name="username" value={signupData.username} onChange={handleChange}/>
             </Form.Field>
             <Form.Field>
@@ -31,6 +33,10 @@ function Signup(props) {
             </Form.Field>
             <Button type='submit'>Sign Up</Button>
         </Form>
+        <p>Already have an account??</p>
+        <Button>
+          <NavLink to="/signup">Log In</NavLink>
+        </Button>
     </div>
   );
 }
