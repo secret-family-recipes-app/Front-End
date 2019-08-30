@@ -1,32 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import RecipeSearch from './RecipeSearch';
 import MyRecipes from './MyRecipes';
-import { Card } from 'semantic-ui-react';
 import { Link } from "react-router-dom";
 
-function Dashboard() {
-    const [ searchState, setSearchState ] = useState('')
-    const [ data, setData ] = useState(
-        [
-            {
-                "recipe": "Shepherd's Pie",
-                "author": "Alton Brown"
-            },
-            {
-                "recipe": "Turkish Eggs",
-                "author": "Nigella Lawson"
-            },
-            {
-                "recipe": "Roast Chicken",
-                "author": "Ina Garten"
-            },
-            {
-                "recipe": "Ratatouille",
-                "author": "Ina Garten"
-            }
-        ]
-    )
-    const [ filteredData, setFilteredData ] = useState(data);
+// ("title", "source", "notes", "ingredients", "instructions", "tags")
+
+function Dashboard(props) {
+    const [ searchState, setSearchState ] = useState('');
+    const [ filteredData, setFilteredData ] = useState(props.recipesList);
+
+    console.log(filteredData)
+    console.log(props.recipesList)
 
     const handleChange = event => {
         setSearchState(event.target.value)
@@ -34,35 +18,33 @@ function Dashboard() {
 
       useEffect(() => {
         if (searchState.length > 0) {
-            setFilteredData(data.filter((recipe) => Object.keys(recipe).some(key => (recipe[key].toLowerCase().includes(searchState.toLowerCase())))
+            setFilteredData(props.recipesList.filter((recipe) => Object.keys(recipe).filter((key) => key !== "id" && key !== "user_id")
+                .some(key => recipe[key].toString('').toLowerCase().includes(searchState.toLowerCase()))
             ))
         } else {
-            setFilteredData(data)
+            setFilteredData(props.recipesList)
         }
-      }, [searchState, data])
+      }, [searchState, props.recipesList])
+      console.log(props.recipesList)
+      console.log(filteredData)
 
   return (
     <div>
         <h1>Dashboard</h1>
         <RecipeSearch onChange={handleChange}/>
         <Link to="/create" >Create Recipe</Link>
-        <MyRecipes />
-        <Card.Group>
-        {
-            filteredData.map((recipe) => {
-                return <Card>
-                <Card.Content>
-                  <Card.Header>{recipe.recipe}</Card.Header>
-                  <Card.Meta>{recipe.author}</Card.Meta>
-                </Card.Content>
-              </Card>
-            })
-        }
-        </Card.Group>
+        <MyRecipes filteredData={filteredData}/>
     </div>
   );
 }
 
 export default Dashboard;
+
+
+// "title": props.recipesList.title,
+// "source": props.recipesList.source,
+// "notes": props.recipesList.notes,
+// "tags": props.recipesList.tags,
+
 
 

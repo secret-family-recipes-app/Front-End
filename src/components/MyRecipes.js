@@ -1,9 +1,17 @@
 import React from 'react';
+import { Card } from 'semantic-ui-react';
+import RecipeCard from './RecipeCard';
 
 function MyRecipes(props) {
 
   return (
-      <div></div>
+      <Card.Group>
+      {
+          props.filteredData.map((recipe) => {
+              return <RecipeCard recipe={recipe}/>
+          })
+      }
+      </Card.Group>
   );
 }
 

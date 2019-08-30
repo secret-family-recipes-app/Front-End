@@ -1,15 +1,35 @@
-import React, { Fragment } from 'react';
+import React, { useState, useEffect }from 'react';
 import 'semantic-ui-css/semantic.min.css';
 import LogIn from "./components/LogIn";
+import Nav from "./components/Nav";
 import Dashboard from "./components/Dashboard";
 import Signup from "./components/Signup";
 import CreateRecipe from "./components/CreateRecipe";
-import { Menu } from 'semantic-ui-react';
-import { Route, NavLink, withRouter, Redirect } from "react-router-dom";
+import { Route, withRouter, Redirect } from "react-router-dom";
 import axios from 'axios';
+import { axiosWithAuth } from './axiosWithAuth.js';
 
 function App(props) {
+  const [ recipesList, setRecipesList ] = useState([])
+  const [ updatedData, setUpdatedData ] = useState(false)
 
+  useEffect(() => {
+    axiosWithAuth().get('https://secretfamilyrecipes.herokuapp.com/recipes')
+    .then(res => {
+      setRecipesList(res.data.recipes)
+      setUpdatedData(true)
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  }, updatedData)
+
+  console.log(recipesList)
+
+  const updateData = () => {
+    setUpdatedData(false);
+  }
+  
   const axiosAuth = (authType, userData) => {
     axios.post(`https://secretfamilyrecipes.herokuapp.com/auth/${authType}`, userData)
           .then(res => {
@@ -37,31 +57,18 @@ function App(props) {
   const PrivateRoute = ({ component: Component, ...rest }) => (
     <Route {...rest} render={(props) => (
       localStorage.getItem("token")
-        ? <Component {...props} />
+        ? <Component {...props} {...rest}/>
         : <Redirect to='/login' />
     )} />
     )
 
   return (
     <div className="App">
-      <Menu secondary>
-        {
-        localStorage.getItem('token')
-        ? <Menu.Item name='logout' position="right" onClick={handleLogout} />
-        : <Fragment>
-            <Menu.Item name="login" position="right">
-              <NavLink to="/login" activeClassName="active">Log In</NavLink>
-            </Menu.Item>
-            <Menu.Item>
-              <NavLink to="/signup" activeClassName="active">Sign Up</NavLink>
-            </Menu.Item>
-          </Fragment>
-        }
-      </Menu>
-        <PrivateRoute path='/dashboard' component={Dashboard} />
-        <PrivateRoute path='/create' component={CreateRecipe} />
-        <Route path="/login" exact render={props => <LogIn {...props} login={login}/>} />
-        <Route path="/signup" exact render={props => <Signup {...props} signup={signup} />} />
+      <Nav handleLogout={handleLogout}/>
+      <PrivateRoute path='/dashboard' component={Dashboard} recipesList={recipesList}/>
+      <PrivateRoute path='/create' component={CreateRecipe} updateData={updateData}/>
+      <Route path="/login" exact render={props => <LogIn {...props} login={login}/>} />
+      <Route path="/signup" exact render={props => <Signup {...props} signup={signup} />} />
     </div>
   );
 }

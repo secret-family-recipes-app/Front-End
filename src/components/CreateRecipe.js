@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { axiosWithAuth } from '../axiosWithAuth.js';
-import { Button, TextArea, Form, Input } from 'semantic-ui-react'
+import { Button, TextArea, Form, Input } from 'semantic-ui-react';
+
 
 function CreateRecipe(props) {
+
     const [ currentTag, setCurrentTag ] = useState('');
     const [ currentIngredient, setCurrentIngredient ] = useState('');
     const [ recipeData, setRecipeData ] = useState({
@@ -62,7 +64,11 @@ function CreateRecipe(props) {
 
     const createRecipe = event => {
         axiosWithAuth().post('https://secretfamilyrecipes.herokuapp.com/recipes', recipeData)
-          .then(result => console.log(result))
+          .then(result => {
+            console.log(result)
+            props.updateData();
+          })
+  
           .catch(err => console.log(err));
     }
 
