@@ -16,3 +16,93 @@ code {
   width: 109.34px;
   height: 107px
 }
+
+#root > .App > .menu {
+  margin: 0 20px;
+}
+
+.App > .login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  height: 600px;
+  width: 550px;
+}
+
+.App > .login > .form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+}
+
+.App > .login > p {
+  text-align: center;
+}
+
+.App > .login > h2 {
+  font-family: Lato;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 32px;
+  line-height: 38px;
+
+  color: #4A4A4A;
+}
+
+button {
+  width: 160px;
+}
+
+.App > .login {
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.App > .login > button {
+  border: 1px solid #6AD856;
+  box-sizing: border-box;
+  border-radius: 6px;
+  background-color: white;
+}
+
+.login > .form > button {
+  background: #6AD856;
+  color: white;
+}
+
+.App > .login > button > a {
+  color: #6AD856;
+}
+
+.login > .ui.form > .field > label {
+  font-family: Lato;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  color: #4A4A4A;
+}
+
+.login > .ui.form > .field > input {
+  background: #FFFFFF;
+  border: 1px solid #979797;
+  width: 250px;
+  height: 36px;
+}
+
+.App > .login > .ui.form {
+  margin-bottom: 50px;
+}
+
+.copyright {
+  margin-top: 20px;
+  text-align: center;
+  font-family: Lato;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+}

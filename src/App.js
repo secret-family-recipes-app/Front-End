@@ -69,6 +69,7 @@ function App(props) {
       <PrivateRoute path='/create' component={CreateRecipe} updateData={updateData}/>
       <Route path="/login" exact render={props => <LogIn {...props} login={login}/>} />
       <Route path="/signup" exact render={props => <Signup {...props} signup={signup} />} />
+      <p class="copyright">Terms of Service | Private Policy | Copyright SFA 2019</p>
     </div>
   );
 }
