@@ -5,36 +5,35 @@ import Nav from "./components/Nav";
 import Dashboard from "./components/Dashboard";
 import Signup from "./components/Signup";
 import CreateRecipe from "./components/CreateRecipe";
+import RecipeView from "./components/RecipeView";
 import { Route, withRouter, Redirect } from "react-router-dom";
 import axios from 'axios';
 import { axiosWithAuth } from './axiosWithAuth.js';
 
 function App(props) {
   const [ recipesList, setRecipesList ] = useState([])
-  const [ updatedData, setUpdatedData ] = useState(false)
+  const [ isDataUpdated, setIsDataUpdated ] = useState(true)
 
   useEffect(() => {
     axiosWithAuth().get('https://secretfamilyrecipes.herokuapp.com/recipes')
     .then(res => {
       setRecipesList(res.data.recipes)
-      setUpdatedData(true)
+      setIsDataUpdated(true)
     })
     .catch(err => {
       console.log(err);
     })
-  }, updatedData)
+  }, [isDataUpdated])
 
-  console.log(recipesList)
-
-  const updateData = () => {
-    setUpdatedData(false);
+  const updateData = (bool) => {
+    setIsDataUpdated(bool);
   }
   
   const axiosAuth = (authType, userData) => {
     axios.post(`https://secretfamilyrecipes.herokuapp.com/auth/${authType}`, userData)
           .then(res => {
             localStorage.setItem('token', res.data.token);
-            props.history.push("/dashboard");
+            props.history.push("/myrecipes");
           })
           .catch(err => {
               console.log(err);
@@ -51,6 +50,7 @@ function App(props) {
 
   const handleLogout = () => {
     localStorage.removeItem('token');
+    setRecipesList([]);
     props.history.push("/login");
   }
 
@@ -65,11 +65,14 @@ function App(props) {
   return (
     <div className="App">
       <Nav handleLogout={handleLogout}/>
-      <PrivateRoute path='/dashboard' component={Dashboard} recipesList={recipesList}/>
-      <PrivateRoute path='/create' component={CreateRecipe} updateData={updateData}/>
+      <PrivateRoute path='/myrecipes' component={Dashboard} recipesList={recipesList}/>
+      <PrivateRoute path='/create' component={CreateRecipe} updateData={updateData} recipesList={recipesList}/>
+      <PrivateRoute path='/recipe/:id' exact component={RecipeView} recipesList={recipesList} />
+      <PrivateRoute path='/recipe/:id/edit' component={CreateRecipe} updateData={updateData} recipesList={recipesList} />
       <Route path="/login" exact render={props => <LogIn {...props} login={login}/>} />
       <Route path="/signup" exact render={props => <Signup {...props} signup={signup} />} />
-      <p class="copyright">Terms of Service | Private Policy | Copyright SFA 2019</p>
+      <Route path="/recipe/:id/public"render={props => <RecipeView {...props} recipesList={recipesList} />} />
+      <p className="copyright">Terms of Service | Private Policy | Copyright SFA 2019</p>
     </div>
   );
 }

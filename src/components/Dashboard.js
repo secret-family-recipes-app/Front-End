@@ -30,7 +30,7 @@ function Dashboard(props) {
 
   return (
     <div>
-        <h1>Dashboard</h1>
+        <h1>My Recipes</h1>
         <RecipeSearch onChange={handleChange}/>
         <Link to="/create" >Create Recipe</Link>
         <MyRecipes filteredData={filteredData}/>

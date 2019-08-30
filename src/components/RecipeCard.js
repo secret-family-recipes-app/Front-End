@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card, Image, Label, Icon } from 'semantic-ui-react';
+import { Link } from "react-router-dom";
 
 function RecipeCard(props) {
 
@@ -17,10 +18,10 @@ function RecipeCard(props) {
         </Card.Description>
     </Card.Content>
     <Card.Content extra>
-        <a>
+        <Link to={`/recipe/${props.recipe.id}/edit`}>
         <Icon name='edit' />
         Edit Recipe
-        </a>
+        </Link>
     </Card.Content>
     </Card>
   )

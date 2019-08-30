@@ -25,11 +25,11 @@ function LogIn(props) {
         <Form onSubmit={handleSubmit}>
             <Form.Field>
                 <label>Email Address</label>
-                <input placeholder='Username' name="username" value={userData.username} onChange={handleChange}/>
+                <input name="username" value={userData.username} onChange={handleChange}/>
             </Form.Field>
             <Form.Field>
                 <label>Password</label>
-                <input placeholder='Password' type="password" name="password" value={userData.password} onChange={handleChange}/>
+                <input type="password" name="password" value={userData.password} onChange={handleChange}/>
             </Form.Field>
             <Button type='submit'>LOG IN</Button>
             <p>FORGOT YOUR PASSWORD?</p>
