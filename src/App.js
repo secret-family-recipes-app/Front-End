@@ -70,6 +70,7 @@ function App(props) {
       <PrivateRoute path='/create' component={CreateRecipe} updateData={updateData} recipesList={recipesList}/>
       <PrivateRoute path='/recipe/:id' exact component={RecipeView} updateData={updateData} recipesList={recipesList} />
       <PrivateRoute path='/recipe/:id/edit' component={CreateRecipe} updateData={updateData} recipesList={recipesList} />
+      <PrivateRoute path='/' exact component={Dashboard} recipesList={recipesList} />
       <Route path="/login" exact render={props => <LogIn {...props} login={login}/>} />
       <Route path="/signup" exact render={props => <Signup {...props} signup={signup} />} />
       <Route path="/recipe/:id/public"render={props => <RecipeView {...props} recipesList={recipesList} />} />
