@@ -6,11 +6,11 @@ import { NavLink } from "react-router-dom";
 function Nav(props) {
 
   return (
-          <Menu secondary>
+          <div className="menu">
             <div>
-            <NavLink to="/index.html">
-            <img src={logo} className="App-logo" alt="logo" />
-            </NavLink>
+              <a href="https://secret-family-recipes-app.github.io/Marketing-Page/">
+                <img src={logo} className="App-logo" alt="logo" />
+              </a>
             </div>
           {
               localStorage.getItem('token')
@@ -26,11 +26,12 @@ function Nav(props) {
                   </Dropdown.Menu>
                 </Dropdown>
               </Fragment>
-              : <Menu.Item position='right'>
-                  <NavLink to="/signup" activeClassName="active" >Sign Up</NavLink>
-                </Menu.Item>
+              : <div>
+                  <a href="https://secret-family-recipes-app.github.io/Marketing-Page/about.html" className="pages about-link">About Us</a>
+                  <NavLink to="/signup" activeClassName="active" class="pages">Sign Up</NavLink>
+                </div>
           }
-          </Menu>
+          </div>
   );
 }
 

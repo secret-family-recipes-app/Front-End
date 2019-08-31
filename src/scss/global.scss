@@ -1,0 +1,55 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  html {
+    font-size: 62.5%;
+    font-family: "Lato", sans-serif;
+    color: $font-color;
+    // $media $tablet{
+    //   color: $black;
+    // }
+  }
+  
+  body {
+    margin: 0;
+  }
+  
+  h1 {
+    font-size: 2.8rem;
+  }
+  
+  h2 {
+    font-size: 2.4rem;
+  }
+  
+  p {
+    font-size: 1.8rem;
+  }
+  
+  li {
+    font-size: 2rem;
+  }
+  
+  sup {
+    font-size: medium;
+    vertical-align: super;
+  }
+  
+  sub {
+    font-size: medium;
+    vertical-align: sub;
+  }
+  
+  em{
+    font-style: italic;
+  }
+
+  .App-logo {
+    width: 100px;
+    margin-top: 5%;
+  }
+  
+  #root > .App > .menu {
+    margin: 1.8rem 3rem 0 3rem;
+  }

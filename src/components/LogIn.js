@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Form } from 'semantic-ui-react';
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function LogIn(props) {
     const [userData, setUserData] = useState({
@@ -20,7 +20,7 @@ function LogIn(props) {
         }
 
   return (
-    <div className="login">
+    <div className="login authform">
       <h2>Welcome Back!</h2>
         <Form onSubmit={handleSubmit}>
             <Form.Field>
@@ -36,7 +36,7 @@ function LogIn(props) {
         </Form>
         <p>Don't have an account?</p>
         <Button>
-          <NavLink to="/signup">SIGN UP</NavLink>
+          <Link to="/signup">SIGN UP</Link>
         </Button>
     </div>
   );

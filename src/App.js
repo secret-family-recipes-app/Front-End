@@ -73,7 +73,12 @@ function App(props) {
       <Route path="/login" exact render={props => <LogIn {...props} login={login}/>} />
       <Route path="/signup" exact render={props => <Signup {...props} signup={signup} />} />
       <Route path="/recipe/:id/public"render={props => <RecipeView {...props} recipesList={recipesList} />} />
-      <p className="copyright">Terms of Service | Private Policy | Copyright SFA 2019</p>
+      <footer>
+      <p>
+        <a href="#">Terms of Service</a> | <a href="#">Private Policy</a> |
+        <a href="#"> Copyright SFA 2019</a>
+      </p>
+    </footer>
     </div>
   );
 }

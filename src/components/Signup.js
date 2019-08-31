@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Form } from 'semantic-ui-react';
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Signup(props) {
     const [signupData, setSignupData] = useState({
@@ -20,7 +20,7 @@ function Signup(props) {
         }
 
   return (
-    <div className="signup">
+    <div className="signup authform">
       <h2>Start Creating and Sharing Recipes!</h2>
         <Form onSubmit={handleSubmit}>
             <Form.Field>
@@ -35,7 +35,7 @@ function Signup(props) {
         </Form>
         <p>Already have an account??</p>
         <Button>
-          <NavLink to="/signup">Log In</NavLink>
+          <Link to="/login">Log In</Link>
         </Button>
     </div>
   );
