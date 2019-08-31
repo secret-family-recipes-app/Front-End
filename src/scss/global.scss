@@ -45,6 +45,13 @@
     font-style: italic;
   }
 
+  .App {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+  }
+
   .App-logo {
     width: 100px;
     margin-top: 5%;
@@ -52,4 +59,8 @@
   
   #root > .App > .menu {
     margin: 1.8rem 3rem 0 3rem;
+  }
+
+  button {
+    font-size: 1.6rem;
   }

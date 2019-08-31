@@ -28,7 +28,7 @@ function Nav(props) {
               </Fragment>
               : <div>
                   <a href="https://secret-family-recipes-app.github.io/Marketing-Page/about.html" className="pages about-link">About Us</a>
-                  <NavLink to="/signup" activeClassName="active" class="pages">Sign Up</NavLink>
+                  <NavLink to="/signup" activeClassName="active" className="pages">Sign Up</NavLink>
                 </div>
           }
           </div>
