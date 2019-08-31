@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Form } from 'semantic-ui-react';
+import { Link } from "react-router-dom";
 
 function Signup(props) {
     const [signupData, setSignupData] = useState({
@@ -12,16 +13,18 @@ function Signup(props) {
           [event.target.name]: event.target.value
         });
       }
-      const handleSubmit = event => {
+
+    const handleSubmit = event => {
         event.preventDefault();
         props.signup(signupData);
         }
 
   return (
-    <div>
+    <div className="signup authform">
+      <h2>Start Creating and Sharing Recipes!</h2>
         <Form onSubmit={handleSubmit}>
             <Form.Field>
-                <label>Username</label>
+                <label>Email Address</label>
                 <input placeholder='Username' name="username" value={signupData.username} onChange={handleChange}/>
             </Form.Field>
             <Form.Field>
@@ -30,6 +33,10 @@ function Signup(props) {
             </Form.Field>
             <Button type='submit'>Sign Up</Button>
         </Form>
+        <p>Already have an account??</p>
+        <Button>
+          <Link to="/login">Log In</Link>
+        </Button>
     </div>
   );
 }
