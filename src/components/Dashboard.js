@@ -25,8 +25,6 @@ function Dashboard(props) {
             setFilteredData(props.recipesList)
         }
       }, [searchState, props.recipesList])
-      console.log(props.recipesList)
-      console.log(filteredData)
 
   return (
     <div className="my_recipes">

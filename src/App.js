@@ -15,15 +15,19 @@ function App(props) {
   const [ isDataUpdated, setIsDataUpdated ] = useState(true)
 
   useEffect(() => {
+    console.log('updating')
     axiosWithAuth().get('https://secretfamilyrecipes.herokuapp.com/recipes')
     .then(res => {
-      setRecipesList(res.data.recipes)
-      setIsDataUpdated(true)
+      setRecipesList(res.data.recipes);
+      setIsDataUpdated(true);
+      console.log('test');
     })
     .catch(err => {
       console.log(err);
     })
   }, [isDataUpdated])
+
+  console.log(recipesList);
 
   const updateData = (bool) => {
     setIsDataUpdated(bool);
@@ -34,6 +38,7 @@ function App(props) {
           .then(res => {
             localStorage.setItem('token', res.data.token);
             props.history.push("/myrecipes");
+            setIsDataUpdated(false);
           })
           .catch(err => {
               console.log(err);
@@ -62,15 +67,17 @@ function App(props) {
     )} />
     )
 
+    console.log(isDataUpdated);
+
   return (
     <div className="App">
       <Nav handleLogout={handleLogout}/>
-      <PrivateRoute path='/myrecipes' component={Dashboard} recipesList={recipesList}/>
+      <PrivateRoute path='/myrecipes' component={Dashboard} recipesList={recipesList} isDataUpdated={isDataUpdated}/>
       <PrivateRoute path='/create' component={CreateRecipe} updateData={updateData} recipesList={recipesList}/>
       <PrivateRoute path='/recipe/:id' exact component={RecipeView} updateData={updateData} recipesList={recipesList} />
       <PrivateRoute path='/recipe/:id/edit' component={CreateRecipe} updateData={updateData} recipesList={recipesList} />
       <PrivateRoute path='/' exact component={Dashboard} recipesList={recipesList} />
-      <Route path="/login" exact render={props => (localStorage.getItem("token") ? <Redirect to='/myrecipes' /> : <LogIn {...props} login={login}/>)} />
+      <Route path="/login" exact render={props => (localStorage.getItem("token") ? <Redirect to='/myrecipes' /> : <LogIn {...props} login={login} />)} />
       <Route path="/signup" exact render={props => (localStorage.getItem("token") ? <Redirect to='/myrecipes' /> : <Signup {...props} signup={signup} />)} />
       <Route path="/recipe/:id/public"render={props => <RecipeView {...props} recipesList={recipesList} />} />
       <footer>

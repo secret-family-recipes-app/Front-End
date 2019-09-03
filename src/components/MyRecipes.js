@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Icon } from 'semantic-ui-react';
+import { Card, Icon, Loader } from 'semantic-ui-react';
 import RecipeCard from './RecipeCard';
 import { Link } from "react-router-dom";
 
