@@ -81,7 +81,8 @@ function CreateRecipe(props) {
         axiosWithAuth().post('https://secretfamilyrecipes.herokuapp.com/recipes', recipeData)
             .then(result => {
                 setLoading(false);
-                props.history.push(`/recipe/${result.data.pop().id}`);
+                console.log(result.data);
+                props.history.push(`/recipe/${result.data.shift().id}`);
                 props.updateData(false);
               })
               .catch(err => {
@@ -135,7 +136,7 @@ function CreateRecipe(props) {
                     recipeData["tags"] ? recipeData["tags"].map((tag, index) => {
                         return (
                             <Form.Field>
-                                <Input
+                                <Input className="tags_create"
                                 name="tags"
                                 value={recipeData["tags"][index]} 
                                 type='text' 
@@ -164,7 +165,7 @@ function CreateRecipe(props) {
                     recipeData["ingredients"] ? recipeData["ingredients"].map((ingredient, index) => {
                         return (
                             <Form.Field>
-                                <Input 
+                                <Input className="ingredients_create" 
                                 name="ingredients"
                                 value={recipeData["ingredients"][index]} 
                                 type='text' 
