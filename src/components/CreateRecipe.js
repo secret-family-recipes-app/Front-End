@@ -124,18 +124,18 @@ function CreateRecipe(props) {
     }
 
   return (
-            <Form onSubmit={handleClick}>
+            <Form className="create_recipe" onSubmit={handleClick}>
                 <Form.Field>
-                    <Input size='massive' value={recipeData.title} name="title" placeholder='Recipe Title' onKeyDown={event => enter(event)} onChange={event => handleChange(event)}/>
+                    <Input size='massive' className="recipe_name" value={recipeData.title} name="title" placeholder='Recipe Title' onKeyDown={event => enter(event)} onChange={event => handleChange(event)}/>
                 </Form.Field>
                 <Form.Field>
-                    <Input size='large' value={recipeData.source} name="source" placeholder='Author/Source' onKeyDown={event => enter(event)} onChange={event => handleChange(event)}/>
+                    <Input size='large' className="recipe_source" value={recipeData.source} name="source" placeholder='Author/Source' onKeyDown={event => enter(event)} onChange={event => handleChange(event)}/>
                 </Form.Field>
                 {
                     recipeData["tags"] ? recipeData["tags"].map((tag, index) => {
                         return (
                             <Form.Field>
-                                <Input 
+                                <Input
                                 name="tags"
                                 value={recipeData["tags"][index]} 
                                 type='text' 
@@ -147,7 +147,7 @@ function CreateRecipe(props) {
                     }) : <div></div>
                 }
                 <Form.Field>
-                    <Input 
+                    <Input className="tags_create"  
                     placeholder='Add Tags' 
                     name="tagsInput"
                     type='text'
@@ -176,7 +176,7 @@ function CreateRecipe(props) {
                     }) : <div></div>
                 }
                 <Form.Field>
-                    <Input 
+                    <Input className="ingredients_create" 
                     placeholder='Add Ingredient' 
                     name="ingredientsInput"
                     type="text"
@@ -191,7 +191,7 @@ function CreateRecipe(props) {
                 </label>
                 <Form.Field>
                     {
-                        <TextArea name="directions" onChange={event => handleChange(event)} value={
+                        <TextArea className="directions_create" rows="10" name="directions" onChange={event => handleChange(event)} value={
                             !recipeData["instructions"] ? '' : recipeData["instructions"].join('\n')
                         }/>
                     }

@@ -1,4 +1,5 @@
 .App {
+
     .authform {
         padding: 60px 0;
         display: flex;
@@ -9,7 +10,7 @@
         width: 550px;
         box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
         .form {
-            margin: 40px 0 50px;
+            margin: 15px 0 25px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -18,6 +19,9 @@
             button {
                 background: $green;
                 color: white;
+                padding: 11px 6%;
+                font-size: 1.6rem;
+                font-weight: 400;
                 &:hover {
                     background: $peach;
                     border-color: $peach;
@@ -45,6 +49,9 @@
             border-radius: 6px;
             background-color: white;
             width: 160px;
+            padding: 11px 6%;
+            font-size: 1.6rem;
+            font-weight: 400;
             a {
                 color: $green;
             }
@@ -69,7 +76,14 @@
                 border: 1px solid #979797;
                 width: 250px;
                 height: 36px;
+                margin-bottom: 10px;
+                font-size: 1.6em;
               }
+    }
+    .signup {
+        .form {
+            margin: 15px 0 85px;
+        }
     }
 }
 

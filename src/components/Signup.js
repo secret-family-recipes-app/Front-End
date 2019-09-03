@@ -25,11 +25,11 @@ function Signup(props) {
         <Form onSubmit={handleSubmit}>
             <Form.Field>
                 <label>Email Address</label>
-                <input placeholder='Username' name="username" value={signupData.username} onChange={handleChange}/>
+                <input name="username" value={signupData.username} onChange={handleChange}/>
             </Form.Field>
             <Form.Field>
                 <label>Password</label>
-                <input placeholder='Password' type="password" name="password" value={signupData.password} onChange={handleChange}/>
+                <input type="password" name="password" value={signupData.password} onChange={handleChange}/>
             </Form.Field>
             <Button type='submit'>Sign Up</Button>
         </Form>

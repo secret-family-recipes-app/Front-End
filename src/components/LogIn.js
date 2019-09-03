@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Form } from 'semantic-ui-react';
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 function LogIn(props) {
     const [userData, setUserData] = useState({

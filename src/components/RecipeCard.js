@@ -19,8 +19,7 @@ function RecipeCard(props) {
     </Card.Content>
     <Card.Content extra>
         <Link to={`/recipe/${props.recipe.id}/edit`}>
-        <Icon name='edit' />
-        Edit Recipe
+        <Icon name='edit' /> Edit
         </Link>
     </Card.Content>
     </Card>
