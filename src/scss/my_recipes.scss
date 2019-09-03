@@ -1,0 +1,39 @@
+.App {
+    .my_recipes {
+        height: 100%;
+        margin: 0 13% 50px;
+        display: flex;
+        flex-direction: column;
+        .recipes_header {
+            display: flex;
+            margin: 2rem 0;
+            justify-content: space-between;
+        }
+        .cards {
+            display: flex;
+            margin: 0 auto;
+            a {
+                flex: 1;
+                margin-bottom: 20px;
+                    .card {
+                        height: 100%;
+                        margin: 0 1rem;
+                }
+                .create {
+                    .content {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+                }
+            }
+        }
+    }
+}
+.content {
+    .description {
+        .label {
+            font-size: 1.1rem;
+        }
+    }
+}
