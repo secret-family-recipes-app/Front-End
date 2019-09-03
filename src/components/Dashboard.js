@@ -29,11 +29,12 @@ function Dashboard(props) {
       console.log(filteredData)
 
   return (
-    <div>
+    <div className="my_recipes">
+      <div className="recipes_header">
         <h1>My Recipes</h1>
         <RecipeSearch onChange={handleChange}/>
-        <Link to="/create" >Create Recipe</Link>
-        <MyRecipes filteredData={filteredData}/>
+      </div>
+        <MyRecipes searchState={searchState} filteredData={filteredData}/>
     </div>
   );
 }

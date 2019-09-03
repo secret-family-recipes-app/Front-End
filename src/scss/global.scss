@@ -3,7 +3,7 @@
   }
   
   html {
-    font-size: 62.5%;
+    font-size: 62.5% !important;
     font-family: "Lato", sans-serif;
     color: $font-color;
     // $media $tablet{
@@ -50,17 +50,13 @@
     flex-direction: column;
     justify-content: space-between;
     height: 100vh;
+    .ui.button {
+      padding: 11px 6%;
+      font-size: 1.6rem;
+    }
   }
 
   .App-logo {
     width: 100px;
     margin-top: 5%;
-  }
-  
-  #root > .App > .menu {
-    margin: 1.8rem 3rem 0 3rem;
-  }
-
-  button {
-    font-size: 1.6rem;
   }

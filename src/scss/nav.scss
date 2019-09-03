@@ -1,5 +1,5 @@
 .App {
-    .menu {
+    .nav {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -28,6 +28,25 @@
       
         .about-link {
           margin-right: 40px;
+        }
+        .loggedin_menu {
+          display: flex;
+          font-size: 1.8rem;
+          .dropdown{
+            .item {
+              font-size: 1.8rem;
+            }
+            .menu {
+              left: -80px;
+            }
+          }
+          .item:first-of-type {
+            margin-right: 50px;
+            font-size: 1.8rem;
+            a {
+              font-size: 1.8rem;
+            }
+          }
         }
       }
 }

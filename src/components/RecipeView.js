@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Icon, Popup } from 'semantic-ui-react';
+import { Button, Icon, Popup, Image } from 'semantic-ui-react';
 import { axiosWithAuth } from '../axiosWithAuth.js';
 import { Link } from "react-router-dom";
 import {CopyToClipboard} from 'react-copy-to-clipboard';
@@ -43,31 +43,42 @@ function RecipeView (props) {
   console.log(recipe)
 
     return (
-      <div>
-        <section>
-        <h1>{recipe.title}</h1>
-        <p>{recipe.source}</p>
-        {
-          
-        }
-      {
-        recipe.tags.map(tag => {
-          return <p>tag</p>
-        })
-      }
-      <Button onClick={deleteRecipe}><Icon name='trash' /> Delete Recipe</Button>
-      <Button><Link to={`/recipe/${recipeID}/edit`}><Icon name='edit' /> Edit Recipe</Link></Button>
-      <Popup
-      on='click' content='Copied public link to clipbboard' trigger={<CopyToClipboard text={`https://secretfamilyrecipes.herokuapp.com/recipes/${recipeID}/public`}>
-      <Button><Icon name='share' /> Share Recipe</Button>
-      </CopyToClipboard>} />
+      <div className="recipe_view">
+        <section className="recipe_header">
+          <div className="recipe_header_text">
+            <h1>{recipe.title}</h1>
+            <p className="recipe_source">{recipe.source}</p>
+            {
+              
+            }
+            <div className="tags">
+            {
+              recipe.tags.map(tag => {
+                return <p>#{tag}</p>
+              })
+            }
+            </div>
+            <div className="buttons">
+            <Button onClick={deleteRecipe}><Icon name='trash' /> Delete</Button>
+            <Button><Link to={`/recipe/${recipeID}/edit`}><Icon name='edit' /> Edit</Link></Button>
+            <Popup
+            on='click' content='Copied public link to clipbboard' trigger={<CopyToClipboard text={`https://secretfamilyrecipes.herokuapp.com/recipes/${recipeID}/public`}>
+            <Button><Icon name='share' /> Share</Button>
+            </CopyToClipboard>} />
+            </div>
+        </div>
+      <Image src='https://react.semantic-ui.com/images/wireframe/image.png' size='medium' />
       </section>
+      <section className="recipe_ingredients">
+        <h2>Ingredients</h2>
       {
         recipe.ingredients.map(ingredient => {
           return <p>{ingredient}</p>
         })
       }
-      <section className="directions">
+      </section>
+      <section className="recipe_instructions">
+        <h2>Directions</h2>
       {
         recipe.instructions.map(instruction => {
           if (instruction !== "") {

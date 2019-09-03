@@ -1,0 +1,21 @@
+.App {
+    .create_recipe {
+        margin: 0 20%;
+        .field {
+            .recipe_name {
+                input {
+                    font-size: 2.7rem;
+                }
+            }
+            .recipe_source {
+                input {
+                    font-size: 1.8rem;
+                }
+            }
+            .tags_create, .ingredients_create, .directions_create {
+                font-size: 1.5rem;
+            }
+        }
+    }
+}
+
